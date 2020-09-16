@@ -68,19 +68,19 @@ const personOne = new Person('William', 22)
 const personTwo = new Person('Grady', 33)
 const personThree = new Person('Cheree', 41)
 
-console.log(personOne.toString())
-console.log(personTwo.toString())
-console.log(personThree.toString())
+// console.log(personOne.toString())
+// console.log(personTwo.toString())
+// console.log(personThree.toString())
 
 personTwo.eat('pineapple')
 personTwo.eat('sandwich')
 personTwo.eat('fried chicken')
 
-console.log(personTwo.stomach)
+// console.log(personTwo.stomach)
 
 personTwo.poop()
 
-console.log(personTwo.stomach)
+// console.log(personTwo.stomach)
 
 /*
   TASK 2
@@ -96,9 +96,40 @@ console.log(personTwo.stomach)
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model
+  this.milesPerGallon = milesPerGallon
+  this.tank = 0
+  this.odometer = 0
 }
+
+Car.prototype.fill = function (gallons) {
+  return this.tank += gallons
+}
+
+Car.prototype.drive = function (distance) {
+    if (this.tank <= 0) {
+      return `I ran out of fuel at ${this.odometer} miles!`
+    } else {
+      this.odometer += distance
+      this.tank = this.tank - (distance/this.milesPerGallon)
+    }
+}
+
+// const prius = new Car('toyota', 40)
+
+// prius.fill (5)
+
+// console.log(prius)
+
+// prius.drive(100)
+
+// console.log(prius)
+
+// prius.drive(200)
+
+// console.log(prius)
+
 
 /*
   TASK 3
@@ -107,9 +138,35 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
 
+// function Person(name, age){
+//   this.name = name
+//   this.age = age
+//   this.stomach = []
+// }
+
+function Baby(favoriteToy) {
+  Person.call(this, name, age)
+  this.favoriteToy = favoriteToy
 }
+
+Baby.prototype = Object.create(Person.prototype)
+
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`
+}
+
+const newBaby = new Baby ({
+  name: 'Alden',
+  age: '1',  
+  favoriteToy: 'ball',
+})
+
+console.log(newBaby)
+
+newBaby.play()
+
+console.log(newBaby.play())
 
 /* 
   TASK 4
