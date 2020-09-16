@@ -107,29 +107,37 @@ Car.prototype.fill = function (gallons) {
   return this.tank += gallons
 }
 
+// Car.prototype.drive = function (distance) {
+//       this.odometer += distance
+//       this.tank = this.tank - (distance/this.milesPerGallon)  
+
+//     if (this.tank <= distance/this.milesPerGallon) {
+//       console.log(`I ran out of fuel at ${this.odometer} miles!`)
+//       return `I ran out of fuel at ${this.odometer} miles!`
+//     }
+// }
+
 Car.prototype.drive = function (distance) {
-    if (this.tank <= 0) {
-      return `I ran out of fuel at ${this.odometer} miles!`
-    } else {
+    if (this.tank > (distance/this.milesPerGallon)) {
       this.odometer += distance
-      this.tank = this.tank - (distance/this.milesPerGallon)
-    }
-}
+      this.tank = this.tank - (distance/this.milesPerGallon)    
+    } else if (this.tank <= distance/this.milesPerGallon) {
+        this.odometer = this.odometer + (this.tank*this.milesPerGallon)
+        this.tank = 0
+        return `I ran out of fuel at ${this.odometer} miles!`
+      }
+  }
 
-// const prius = new Car('toyota', 40)
-
-// prius.fill (5)
-
-// console.log(prius)
-
-// prius.drive(100)
-
-// console.log(prius)
-
-// prius.drive(200)
-
-// console.log(prius)
-
+const prius = new Car('toyota', 50)
+prius.fill (5) // 250 miles
+prius.drive(100) // 100 miles left
+console.log(prius)
+console.log(prius.drive(150))
+console.log(prius)
+console.log (prius.drive(200))
+prius.fill(2)
+console.log (prius.drive(200))
+console.log(prius)
 
 /*
   TASK 3
@@ -158,11 +166,11 @@ Baby.prototype.play = function () {
 
 const newBaby = new Baby ('Alden', 1, 'ball')
 
-console.log(newBaby)
+// console.log(newBaby)
 
 newBaby.play()
 
-console.log(newBaby.play())
+// console.log(newBaby.play())
 
 /* 
   TASK 4
