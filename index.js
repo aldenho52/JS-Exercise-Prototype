@@ -12,13 +12,14 @@ function Airplane(name) {
   this.name = name;
   this.isFlying = false;
 }
+
 Airplane.prototype.takeOff = function () {
   this.isFlying = true;
 };
+
 Airplane.prototype.land = function () {
   this.isFlying = false;
 };
-
 
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -39,9 +40,47 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age){
+  this.name = name
+  this.age = age
+  this.stomach = []
 }
+
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible)
+  }
+}
+
+// give ability to poop
+
+Person.prototype.poop = function () {
+  this.stomach = []
+}
+
+// toString
+
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`
+}
+
+const personOne = new Person('William', 22)
+const personTwo = new Person('Grady', 33)
+const personThree = new Person('Cheree', 41)
+
+console.log(personOne.toString())
+console.log(personTwo.toString())
+console.log(personThree.toString())
+
+personTwo.eat('pineapple')
+personTwo.eat('sandwich')
+personTwo.eat('fried chicken')
+
+console.log(personTwo.stomach)
+
+personTwo.poop()
+
+console.log(personTwo.stomach)
 
 /*
   TASK 2
