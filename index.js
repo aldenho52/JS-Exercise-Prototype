@@ -145,7 +145,7 @@ Car.prototype.drive = function (distance) {
 //   this.stomach = []
 // }
 
-function Baby(favoriteToy) {
+function Baby(name, age, favoriteToy) {
   Person.call(this, name, age)
   this.favoriteToy = favoriteToy
 }
@@ -156,11 +156,7 @@ Baby.prototype.play = function () {
   return `Playing with ${this.favoriteToy}`
 }
 
-const newBaby = new Baby ({
-  name: 'Alden',
-  age: '1',  
-  favoriteToy: 'ball',
-})
+const newBaby = new Baby ('Alden', 1, 'ball')
 
 console.log(newBaby)
 
